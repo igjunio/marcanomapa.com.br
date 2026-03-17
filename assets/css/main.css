@@ -121,6 +121,18 @@ h6 {
   .alinharEsquerda {
   text-align: left
   }
+
+  .padding {
+    padding-right: 1rem !important;
+    padding-left: 1rem !important;
+  }
+}
+
+@media (max-width: 1024px) and (min-width: 576px) {
+  .padding {
+    padding-right: 3rem !important;
+    padding-left: 3rem !important;
+  }
 }
 
 /*--------------------------------------------------------------
@@ -565,6 +577,15 @@ section .hero {
 }
 
 @media (max-width: 576px) {
+
+  .hero .intro .eyebrow .text{
+    font-size: 12px;
+  }
+
+  .hero .btn-ghost{
+    font-size: 14px;
+  }
+
   .hero .intro .display-heading {
     font-size: 34px;
   }
@@ -885,6 +906,15 @@ section .hero {
 }
 
 @media (max-width: 576px) {
+
+  .about .intro-content .lead {
+    font-size: 14px;
+  }
+
+  .about .intro-content .headline{
+    font-size: 36px;
+  }
+
   .about .profile-figure .profile-photo {
     width: 100%;
   }
@@ -1215,6 +1245,11 @@ section .hero {
 }
 
 @media (max-width: 576px) {
+
+  .faq .intro-content .headline{
+    font-size: 36px;
+  }
+
   .faq .faq-item .faq-header {
     padding: 25px 0;
   }
