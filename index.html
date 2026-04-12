@@ -40,10 +40,19 @@
         <h1 class="sitename">marca no <span>Mapa</span></h1>
       </a>
 
-      <button id="theme-toggle" class="theme-toggle">
-          <!-- Ícone de Lua (inicialmente) -->
-          <i id="theme-icon" class="bi bi-moon"></i>
-      </button>
+      <div class="header-controls d-flex align-items-center gap-2">
+        <label for="language-select" class="visually-hidden">Escolha o idioma</label>
+        <select id="language-select" class="language-select" aria-label="Escolha o idioma">
+          <option value="pt">Português</option>
+          <option value="en">English</option>
+          <option value="es">Español</option>
+        </select>
+
+        <button id="theme-toggle" class="theme-toggle" aria-label="Alternar tema">
+            <!-- Ícone de Lua (inicialmente) -->
+            <i id="theme-icon" class="bi bi-moon"></i>
+        </button>
+      </div>
 
     </div>
   </header>
@@ -584,6 +593,7 @@
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
   <script src="assets/js/darkmode.js"></script>
+  <script src="assets/js/i18n.js"></script>
 
 </body>
 
