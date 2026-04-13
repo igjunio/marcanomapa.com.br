@@ -41,12 +41,20 @@
       </a>
 
       <div class="header-controls d-flex align-items-center gap-2">
-        <label for="language-select" class="visually-hidden">Escolha o idioma</label>
-        <select id="language-select" class="language-select" aria-label="Escolha o idioma">
-          <option value="pt">Português</option>
-          <option value="en">English</option>
-          <option value="es">Español</option>
-        </select>
+        <div class="language-switcher" role="group" aria-label="Escolha o idioma">
+          <button type="button" class="language-option active" data-language="pt" aria-pressed="true">
+            <span class="flag" aria-hidden="true">🇧🇷</span>
+            <span class="label">PT</span>
+          </button>
+          <button type="button" class="language-option" data-language="en" aria-pressed="false">
+            <span class="flag" aria-hidden="true">🇺🇸</span>
+            <span class="label">EN</span>
+          </button>
+          <button type="button" class="language-option" data-language="es" aria-pressed="false">
+            <span class="flag" aria-hidden="true">🇪🇸</span>
+            <span class="label">ES</span>
+          </button>
+        </div>
 
         <button id="theme-toggle" class="theme-toggle" aria-label="Alternar tema">
             <!-- Ícone de Lua (inicialmente) -->

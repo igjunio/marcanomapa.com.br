@@ -1,6 +1,6 @@
 (function () {
-  const languageSelect = document.getElementById('language-select');
-  if (!languageSelect) return;
+  const languageOptions = Array.from(document.querySelectorAll('.language-option'));
+  if (!languageOptions.length) return;
 
   const whatsappMessages = {
     pt: 'Olá! Vim pelo site da Marca no Mapa e gostaria de entender melhor como funciona a criação do site e a configuração do Google Meu Negócio para minha empresa.',
@@ -11,8 +11,6 @@
   const translations = {
     en: {
       'Criação de Site Profissional e Google Meu Negócio | Marca no Mapa': 'Professional Website Creation and Google Business Profile | Marca no Mapa',
-      'marca no': 'mark on',
-      'Mapa': 'Map',
       'Mais credibilidade e autoridade local': 'More credibility and local authority',
       'Sua empresa aparecendo no Google, transmitindo profissionalismo e gerando mais oportunidades todos os dias.': 'Your business showing up on Google, conveying professionalism, and generating more opportunities every day.',
       'Criamos um site 100% personalizado + configuramos seu Google Meu Negócio para que sua empresa seja encontrada, lembrada e escolhida.': 'We build a 100% custom website and set up your Google Business Profile so your company can be found, remembered, and chosen.',
@@ -138,8 +136,6 @@
     },
     es: {
       'Criação de Site Profissional e Google Meu Negócio | Marca no Mapa': 'Creación de Sitio Web Profesional y Perfil de Empresa en Google | Marca no Mapa',
-      'marca no': 'marca en el',
-      'Mapa': 'Mapa',
       'Mais credibilidade e autoridade local': 'Más credibilidad y autoridad local',
       'Sua empresa aparecendo no Google, transmitindo profissionalismo e gerando mais oportunidades todos os dias.': 'Tu empresa apareciendo en Google, transmitiendo profesionalismo y generando más oportunidades todos los días.',
       'Criamos um site 100% personalizado + configuramos seu Google Meu Negócio para que sua empresa seja encontrada, lembrada e escolhida.': 'Creamos un sitio 100% personalizado + configuramos tu Perfil de Empresa en Google para que tu empresa sea encontrada, recordada y elegida.',
@@ -274,7 +270,8 @@
       const parent = node.parentElement;
       if (!parent) return NodeFilter.FILTER_REJECT;
       if (['SCRIPT', 'STYLE', 'NOSCRIPT'].includes(parent.tagName)) return NodeFilter.FILTER_REJECT;
-      if (parent.closest('#language-select')) return NodeFilter.FILTER_REJECT;
+      if (parent.closest('.language-switcher')) return NodeFilter.FILTER_REJECT;
+      if (parent.closest('.sitename')) return NodeFilter.FILTER_REJECT;
 
       const normalized = normalize(node.nodeValue);
       if (!normalized) return NodeFilter.FILTER_REJECT;
@@ -340,15 +337,22 @@
 
     document.documentElement.lang = lang === 'pt' ? 'pt-br' : lang;
     setWhatsAppMessage(lang);
+
+    languageOptions.forEach((button) => {
+      const isCurrent = button.dataset.language === lang;
+      button.classList.toggle('active', isCurrent);
+      button.setAttribute('aria-pressed', String(isCurrent));
+    });
   };
 
   const savedLanguage = localStorage.getItem('site-language') || 'pt';
-  languageSelect.value = savedLanguage;
   applyLanguage(savedLanguage);
 
-  languageSelect.addEventListener('change', (event) => {
-    const selectedLanguage = event.target.value;
-    localStorage.setItem('site-language', selectedLanguage);
-    applyLanguage(selectedLanguage);
+  languageOptions.forEach((button) => {
+    button.addEventListener('click', () => {
+      const selectedLanguage = button.dataset.language || 'pt';
+      localStorage.setItem('site-language', selectedLanguage);
+      applyLanguage(selectedLanguage);
+    });
   });
 })();
